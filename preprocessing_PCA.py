@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 DATASET_PATH     = "dataset/dataset.csv"
@@ -21,10 +21,6 @@ def preprocess(path: str) -> tuple[pd.DataFrame, pd.Series]:
     df["bmi"] = df["bmi"].astype(float)
     df["bmi"] = df["bmi"].fillna(df["bmi"].median())
 
-    # Normalizacja wieku do [0, 1]
-    scaler = MinMaxScaler()
-    df["age"] = scaler.fit_transform(df[["age"]])
-
     # Label encoding zmiennych binarnych
     df["ever_married"]  = df["ever_married"].map({"Yes": 1, "No": 0})
     df["gender"]        = df["gender"].map({"Male": 1, "Female": 0})
@@ -35,7 +31,7 @@ def preprocess(path: str) -> tuple[pd.DataFrame, pd.Series]:
 
     # Standaryzacja zmiennych numerycznych (wymagana przez PCA)
     num_cols = ["age", "avg_glucose_level", "bmi"]
-    std_scaler = MinMaxScaler()
+    std_scaler = StandardScaler()
     df[num_cols] = std_scaler.fit_transform(df[num_cols])
 
     # Uzupełnienie brakujących wartości medianą (np. ever_married po mapowaniu)
