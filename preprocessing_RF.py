@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 
-DATASET_PATH      = "dataset/dataset.csv"
+DATASET_PATH      = "dataset/data_no_outliers.csv"
 PREPROCESSED_PATH = "dataset/dataset_prep_RF.csv"
 
 # ── Preprocessing ─────────────────────────────────────────────────────────────
