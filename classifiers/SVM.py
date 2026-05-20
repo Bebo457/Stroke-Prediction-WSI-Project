@@ -11,6 +11,11 @@ from sklearn.metrics import (
     recall_score
 )
 import joblib
+from sklearn.model_selection import learning_curve
+import numpy as np
+import os
+
+os.makedirs("plots", exist_ok=True)
 
 # =========================
 # WCZYTANIE DANYCH
@@ -83,7 +88,8 @@ print(cm)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
 plt.title("Confusion Matrix - Stroke Prediction")
-plt.show()
+
+plt.savefig("plots/wykres_confusion_matrix_SVM.png", dpi=300, bbox_inches="tight")
 
 # =========================
 # ROC CURVE
@@ -98,7 +104,39 @@ plt.xlabel("False Positive Rate")
 plt.ylabel("True Positive Rate")
 plt.title("ROC Curve - Stroke Prediction (SVM)")
 plt.legend()
-plt.show()
+
+plt.savefig("plots/wykres_ROC_SVM.png", dpi=300, bbox_inches="tight")
+
+# =========================
+# LEARNING CURVE
+# =========================
+
+train_sizes, train_scores, val_scores = learning_curve(
+    best_model,
+    X_train,
+    y_train,
+    cv=5,
+    scoring="accuracy",   # potem zamienimy na loss
+    n_jobs=-1,
+    train_sizes=np.linspace(0.1, 1.0, 10)
+)
+
+# accuracy → loss
+train_loss = 1 - train_scores.mean(axis=1)
+val_loss = 1 - val_scores.mean(axis=1)
+
+plt.figure()
+plt.plot(train_sizes, train_loss, label="Train Loss (1-accuracy)")
+plt.plot(train_sizes, val_loss, label="Validation Loss (1-accuracy)")
+
+plt.xlabel("Liczba próbek treningowych")
+plt.ylabel("Loss")
+plt.title("Learning Curve (Loss) - SVM Stroke Prediction")
+
+plt.legend()
+plt.grid()
+
+plt.savefig("plots/wykres_learning_curve_loss_SVM.png", dpi=300, bbox_inches="tight")
 
 # =========================
 # ZAPIS MODELU
