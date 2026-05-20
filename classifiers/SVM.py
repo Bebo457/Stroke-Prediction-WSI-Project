@@ -39,7 +39,7 @@ y_test = test_df["stroke"]
 svm_model = SVC(probability=True, class_weight="balanced")
 
 param_grid = {
-    "C": [0.1, 1, 10],
+    "C": [0.1, 1, 10, 100],
     "kernel": ["linear", "rbf"],
     "gamma": ["scale", "auto"]
 }
