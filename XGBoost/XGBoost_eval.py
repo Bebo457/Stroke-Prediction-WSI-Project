@@ -5,6 +5,8 @@ from sklearn.metrics import (classification_report,
                              roc_auc_score,
                              RocCurveDisplay)
 import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.metrics import accuracy_score
 
 TEST_PATH = "dataset/test_smote_all.csv"
 
@@ -20,13 +22,10 @@ model.load_model("xgboost_model.json")
 y_pred      = model.predict(X_test)
 y_pred_prob = model.predict_proba(X_test)[:, 1]
 
-# Predykcja
-y_pred      = model.predict(X_test)
-y_pred_prob = model.predict_proba(X_test)[:, 1]
-
 # Metryki
-print(classification_report(y_test, y_pred, target_names=["Brak udaru", "Udar"]))
+print(classification_report(y_test, y_pred, target_names=["0", "1"], digits=4))
 print(f"AUC-ROC: {roc_auc_score(y_test, y_pred_prob):.4f}")
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
 
 # Macierz pomyłek
 print("\nMacierz pomyłek:")
@@ -42,3 +41,11 @@ plt.savefig(f"{PLOTS_DIR}/ROC.png")
 
 plt.show()
 
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["0", "1"])
+disp.plot(cmap="Blues")
+plt.title("Macierz pomyłek – XGBoost")
+plt.tight_layout()
+plt.savefig(f"{PLOTS_DIR}/confusion_matrix.png", dpi=150)
+
+plt.show()
