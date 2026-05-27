@@ -1,0 +1,70 @@
+Repeated evaluation summary (medians):
+Model: LogisticRegression
+  accuracy: median=0.8090 mean=0.8090
+  precision: median=0.1361 mean=0.1361
+  recall: median=0.5405 mean=0.5405
+  f1: median=0.2174 mean=0.2174
+  roc_auc: median=0.7860 mean=0.7860
+Model: RandomForest
+  accuracy: median=0.8879 mean=0.8879
+  precision: median=0.1111 mean=0.1105
+  recall: median=0.1892 mean=0.1820
+  f1: median=0.1400 mean=0.1374
+  roc_auc: median=0.7796 mean=0.7789
+Model: SVM
+  accuracy: median=0.8342 mean=0.8342
+  precision: median=0.0926 mean=0.0926
+  recall: median=0.2703 mean=0.2703
+  f1: median=0.1379 mean=0.1379
+  roc_auc: median=0.7528 mean=0.7528
+Model: XGBoost
+  accuracy: median=0.8395 mean=0.8395
+  precision: median=0.1316 mean=0.1316
+  recall: median=0.4054 mean=0.4054
+  f1: median=0.1987 mean=0.1987
+  roc_auc: median=0.7521 mean=0.7521
+
+Wilcoxon pairwise tests:
+Metric: accuracy
+  LogisticRegression vs RandomForest: stat=0.0, p=1.6363965084210647e-06, median_diff=-0.0789
+  LogisticRegression vs SVM: stat=0.0, p=4.320463057827488e-08, median_diff=-0.0252
+  LogisticRegression vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=-0.0305
+  RandomForest vs SVM: stat=0.0, p=1.6363965084210647e-06, median_diff=0.0537
+  RandomForest vs XGBoost: stat=0.0, p=1.6363965084210647e-06, median_diff=0.0484
+  SVM vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=-0.0053
+Metric: precision
+  LogisticRegression vs RandomForest: stat=0.0, p=1.6933411124690754e-06, median_diff=0.0249
+  LogisticRegression vs SVM: stat=0.0, p=4.320463057827488e-08, median_diff=0.0435
+  LogisticRegression vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=0.0045
+  RandomForest vs SVM: stat=1.0, p=1.8758209018136779e-06, median_diff=0.0185
+  RandomForest vs XGBoost: stat=3.0, p=2.299071541035474e-06, median_diff=-0.0205
+  SVM vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=-0.0390
+Metric: recall
+  LogisticRegression vs RandomForest: stat=0.0, p=9.932295358180311e-07, median_diff=0.3514
+  LogisticRegression vs SVM: stat=0.0, p=4.320463057827488e-08, median_diff=0.2703
+  LogisticRegression vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=0.1351
+  RandomForest vs SVM: stat=0.0, p=9.932295358180311e-07, median_diff=-0.0811
+  RandomForest vs XGBoost: stat=0.0, p=9.932295358180311e-07, median_diff=-0.2162
+  SVM vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=-0.1351
+Metric: f1
+  LogisticRegression vs RandomForest: stat=0.0, p=1.6933411124690754e-06, median_diff=0.0774
+  LogisticRegression vs SVM: stat=0.0, p=4.320463057827488e-08, median_diff=0.0795
+  LogisticRegression vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=0.0187
+  RandomForest vs SVM: stat=211.0, p=0.6580085748781941, median_diff=0.0021
+  RandomForest vs XGBoost: stat=0.0, p=1.6933411124690754e-06, median_diff=-0.0587
+  SVM vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=-0.0607
+Metric: roc_auc
+  LogisticRegression vs RandomForest: stat=50.0, p=5.5925920605659485e-05, median_diff=0.0064
+  LogisticRegression vs SVM: stat=0.0, p=8.207180322992627e-07, median_diff=0.0333
+  LogisticRegression vs XGBoost: stat=0.0, p=4.320463057827488e-08, median_diff=0.0340
+  RandomForest vs SVM: stat=0.0, p=1.862645149230957e-09, median_diff=0.0269
+  RandomForest vs XGBoost: stat=0.0, p=1.862645149230957e-09, median_diff=0.0276
+  SVM vs XGBoost: stat=0.0, p=8.207180322992627e-07, median_diff=0.0007
+
+McNemar tests on single train->test fit:
+  LogisticRegression vs RandomForest: stat=45.876106194690266, p=1.259731153810148e-11
+  LogisticRegression vs SVM: stat=9.011494252873563, p=0.002682869899029214
+  LogisticRegression vs XGBoost: stat=11.675675675675675, p=0.0006332253972865579
+  RandomForest vs SVM: stat=33.017857142857146, p=9.131629405642195e-09
+  RandomForest vs XGBoost: stat=19.140625, p=1.2143247822661191e-05
+  SVM vs XGBoost: stat=0.6621621621621622, p=0.41579765496293264
