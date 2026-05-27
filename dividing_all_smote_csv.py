@@ -5,7 +5,7 @@ from imblearn.over_sampling import SMOTE
 # =========================
 # WCZYTANIE DANYCH
 # =========================
-df = pd.read_csv("dataset/dataset_prep_PCA.csv")
+df = pd.read_csv("dataset/dataset_prep.csv")
 
 X = df.drop("stroke", axis=1)
 y = df["stroke"]
